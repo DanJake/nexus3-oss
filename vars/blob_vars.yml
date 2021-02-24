@@ -1,0 +1,9 @@
+---
+nexus_blob_prefix: 'blob-'  # Note: Nexus restore - blob name-convention 'blob-*'
+nexus_blob_names:
+  mvn:
+    blob: '{{ nexus_blob_prefix }}mvn'
+
+nexus_blobstores:
+  - name: '{{ nexus_blob_prefix }}mvn'
+    path: "{{ nexus_data_dir }}/blobs/{{ nexus_blob_names.mvn.blob }}"
