@@ -4,6 +4,24 @@
 
 # @requirement: jmespath module must be installe on ansible host
 # @version: 2.4.0
+- name: Update all Ubuntu packages
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: Install required Ubuntu packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - openjdk-8-jdk
+      - openjdk-8-jre
+      - python-pip
+- name: Install jmespath
+  pip:
+    name: jmespath
+
 - name: Check presence of jmespath python module on ansible host
   block:
     - name: Try to use jmespath on a test var
